@@ -1,0 +1,128 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="860" viewBox="0 0 1400 860" role="img" aria-labelledby="title desc">
+  <title id="title">Wanna Fly High 架构与功能示意图</title>
+  <desc id="desc">展示菜单栏体验、遥测与散热决策、特权 helper 和安全恢复之间关系的原创示意图。</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#071526"/>
+      <stop offset="0.55" stop-color="#0b1d32"/>
+      <stop offset="1" stop-color="#11112c"/>
+    </linearGradient>
+    <linearGradient id="cyan" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#64e8ff"/>
+      <stop offset="1" stop-color="#4a8dff"/>
+    </linearGradient>
+    <linearGradient id="violet" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ba8cff"/>
+      <stop offset="1" stop-color="#6672ff"/>
+    </linearGradient>
+    <linearGradient id="green" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#68efc1"/>
+      <stop offset="1" stop-color="#2fb5a8"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%">
+      <feDropShadow dx="0" dy="16" stdDeviation="18" flood-color="#000814" flood-opacity="0.45"/>
+    </filter>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#79dfff"/>
+    </marker>
+    <pattern id="grid" width="42" height="42" patternUnits="userSpaceOnUse">
+      <path d="M 42 0 L 0 0 0 42" fill="none" stroke="#a8c7e8" stroke-opacity="0.055" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <rect width="1400" height="860" fill="url(#bg)"/>
+  <rect x="28" y="28" width="1344" height="804" rx="34" fill="url(#grid)" stroke="#85b8e8" stroke-opacity="0.16"/>
+
+  <text x="72" y="92" fill="#f4f8ff" font-family="-apple-system, BlinkMacSystemFont, 'PingFang SC', 'Noto Sans CJK SC', sans-serif" font-size="38" font-weight="700">Wanna Fly High</text>
+  <text x="74" y="128" fill="#9db6d2" font-family="-apple-system, BlinkMacSystemFont, 'PingFang SC', 'Noto Sans CJK SC', sans-serif" font-size="18">菜单栏散热 · 系统遥测 · 安全回退</text>
+  <text x="1328" y="90" text-anchor="end" fill="#ffcf70" font-family="-apple-system, BlinkMacSystemFont, 'PingFang SC', 'Noto Sans CJK SC', sans-serif" font-size="15" font-weight="700">示意图 · NOT A SCREENSHOT</text>
+  <text x="1328" y="116" text-anchor="end" fill="#718ba9" font-family="-apple-system, BlinkMacSystemFont, 'PingFang SC', 'Noto Sans CJK SC', sans-serif" font-size="13">conceptual architecture</text>
+
+  <!-- left card -->
+  <g filter="url(#shadow)">
+    <rect x="72" y="190" width="350" height="505" rx="28" fill="#102942" fill-opacity="0.92" stroke="#63dfff" stroke-opacity="0.4"/>
+    <rect x="72" y="190" width="350" height="9" rx="4.5" fill="url(#cyan)"/>
+  </g>
+  <text x="108" y="248" fill="#dff9ff" font-family="-apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif" font-size="25" font-weight="700">菜单栏体验</text>
+  <text x="108" y="278" fill="#83dff4" font-family="-apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif" font-size="14">SwiftUI + AppKit · 本地优先</text>
+  <circle cx="160" cy="367" r="74" fill="#0a1b30" stroke="#5de1ff" stroke-width="3" filter="url(#glow)"/>
+  <circle cx="160" cy="367" r="59" fill="none" stroke="#5de1ff" stroke-opacity="0.18" stroke-width="10"/>
+  <path d="M160 308 A59 59 0 0 1 213 392" fill="none" stroke="#64e8ff" stroke-width="10" stroke-linecap="round"/>
+  <text x="160" y="376" text-anchor="middle" fill="#f4fbff" font-family="-apple-system, BlinkMacSystemFont, 'SF Mono', monospace" font-size="31" font-weight="700">3.2</text>
+  <text x="160" y="405" text-anchor="middle" fill="#9db6d2" font-family="-apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif" font-size="13">压力 / 10</text>
+  <g font-family="-apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif" font-size="16">
+    <rect x="108" y="462" width="278" height="42" rx="12" fill="#173b57"/>
+    <text x="128" y="488" fill="#c9eff8">温度 · CPU / GPU · 内存</text>
+    <rect x="108" y="516" width="278" height="42" rx="12" fill="#173b57"/>
+    <text x="128" y="542" fill="#c9eff8">网络 · 风扇 · 实时功耗</text>
+    <rect x="108" y="570" width="278" height="42" rx="12" fill="#173b57"/>
+    <text x="128" y="596" fill="#c9eff8">详情 · 设置 · 安全菜单</text>
+  </g>
+  <text x="108" y="657" fill="#6f9ab8" font-family="-apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif" font-size="13">弹窗关闭后停止功耗采样</text>
+
+  <!-- middle card -->
+  <g filter="url(#shadow)">
+    <rect x="494" y="190" width="410" height="505" rx="28" fill="#182342" fill-opacity="0.94" stroke="#a88bff" stroke-opacity="0.45"/>
+    <rect x="494" y="190" width="410" height="9" rx="4.5" fill="url(#violet)"/>
+  </g>
+  <text x="532" y="248" fill="#f2edff" font-family="-apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif" font-size="25" font-weight="700">遥测与散热决策</text>
+  <text x="532" y="278" fill="#bbaaff" font-family="-apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif" font-size="14">可解释指标 · 分离控制路径</text>
+  <g font-family="-apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif">
+    <rect x="532" y="318" width="154" height="122" rx="18" fill="#272b55" stroke="#8b7bda" stroke-opacity="0.65"/>
+    <text x="554" y="349" fill="#c9c1ff" font-size="15">监测输入</text>
+    <text x="554" y="377" fill="#f4f2ff" font-size="16">温度 / 负载</text>
+    <text x="554" y="402" fill="#f4f2ff" font-size="16">趋势 / Codex</text>
+    <text x="554" y="427" fill="#9e9dc5" font-size="12">功耗仅供显示</text>
+
+    <rect x="712" y="318" width="154" height="122" rx="18" fill="#272b55" stroke="#8b7bda" stroke-opacity="0.65"/>
+    <text x="734" y="349" fill="#c9c1ff" font-size="15">控制策略</text>
+    <text x="734" y="377" fill="#f4f2ff" font-size="16">自动 / 安静</text>
+    <text x="734" y="402" fill="#f4f2ff" font-size="16">分级升速</text>
+    <text x="734" y="427" fill="#9e9dc5" font-size="12">90°C 紧急全速</text>
+  </g>
+  <path d="M686 379 C696 379 702 379 712 379" fill="none" stroke="#a88bff" stroke-width="3" marker-end="url(#arrow)"/>
+  <rect x="532" y="478" width="334" height="126" rx="18" fill="#171d3c" stroke="#6d69b6" stroke-opacity="0.7"/>
+  <text x="558" y="514" fill="#c9c1ff" font-family="-apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif" font-size="15">状态边界</text>
+  <text x="558" y="545" fill="#f4f2ff" font-family="-apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif" font-size="17">压力 ≠ 风扇曲线</text>
+  <text x="558" y="574" fill="#c0c3eb" font-family="-apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif" font-size="14">临时降温与自定义转速互斥</text>
+  <text x="558" y="598" fill="#8d8db8" font-family="-apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif" font-size="12">策略可测试，硬件写入有边界</text>
+  <text x="532" y="657" fill="#8f88bf" font-family="-apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif" font-size="13">核心逻辑与界面 / 硬件访问分层</text>
+
+  <!-- right card -->
+  <g filter="url(#shadow)">
+    <rect x="976" y="190" width="350" height="505" rx="28" fill="#102f36" fill-opacity="0.94" stroke="#63edc0" stroke-opacity="0.42"/>
+    <rect x="976" y="190" width="350" height="9" rx="4.5" fill="url(#green)"/>
+  </g>
+  <text x="1012" y="248" fill="#e3fff5" font-family="-apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif" font-size="25" font-weight="700">安全硬件边界</text>
+  <text x="1012" y="278" fill="#8df0cf" font-family="-apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif" font-size="14">XPC helper · watchdog · automatic</text>
+  <g font-family="-apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif">
+    <rect x="1012" y="320" width="278" height="62" rx="16" fill="#17444a"/>
+    <circle cx="1044" cy="351" r="13" fill="#68efc1"/>
+    <path d="M1037 351 l6 6 10 -13" fill="none" stroke="#0e2a31" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="1070" y="357" fill="#d5fff2" font-size="17">App → 共享协议</text>
+    <rect x="1012" y="398" width="278" height="62" rx="16" fill="#17444a"/>
+    <circle cx="1044" cy="429" r="13" fill="#68efc1"/>
+    <path d="M1037 429 l6 6 10 -13" fill="none" stroke="#0e2a31" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="1070" y="435" fill="#d5fff2" font-size="17">helper → AppleSMC</text>
+    <rect x="1012" y="476" width="278" height="88" rx="16" fill="#16373e" stroke="#4ed5ad" stroke-opacity="0.5"/>
+    <text x="1036" y="508" fill="#9ef2d2" font-size="15">失联或退出</text>
+    <text x="1036" y="537" fill="#f0fff9" font-size="19" font-weight="700">恢复系统 automatic</text>
+    <text x="1036" y="558" fill="#91cdbd" font-size="12">heartbeat watchdog / XPC interruption</text>
+  </g>
+  <text x="1012" y="621" fill="#79bea9" font-family="-apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif" font-size="13">实际 SMC 写入需要授权现场验收</text>
+  <text x="1012" y="657" fill="#6f9f99" font-family="-apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif" font-size="13">本图不代表跨机型或公开分发承诺</text>
+
+  <!-- connectors -->
+  <path d="M422 440 C450 440 464 440 494 440" fill="none" stroke="#79dfff" stroke-width="3" stroke-dasharray="8 9" marker-end="url(#arrow)"/>
+  <path d="M904 440 C932 440 948 440 976 440" fill="none" stroke="#79dfff" stroke-width="3" stroke-dasharray="8 9" marker-end="url(#arrow)"/>
+  <circle cx="458" cy="440" r="5" fill="#79dfff" filter="url(#glow)"/>
+  <circle cx="940" cy="440" r="5" fill="#79dfff" filter="url(#glow)"/>
+
+  <line x1="72" y1="756" x2="1328" y2="756" stroke="#8bb9d6" stroke-opacity="0.18"/>
+  <text x="72" y="794" fill="#819ab7" font-family="-apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif" font-size="14">Conceptual architecture · source of truth: code and validation record</text>
+  <text x="1328" y="794" text-anchor="end" fill="#819ab7" font-family="-apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif" font-size="14">macOS 15 · local-first · ad-hoc signed</text>
+</svg>
